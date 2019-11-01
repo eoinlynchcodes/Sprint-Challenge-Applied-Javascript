@@ -9,40 +9,46 @@
 //  </div >
 // And add it to the DOM in the .header-container component
 
-todayInfo ={
-    date: '1 Nov 2019', 
-    heading: 'Lambda Days',
-    temperature: '98°'
-};
 
-// Reminder: What goes into the header()??? Don't forget this.
-function Header(inputObject) {
+// let objectThisDay = {
+//     date: 'MARCH 28, 2019',
+//     heading: 'Lambda Times',
+//     temperature: '98°' 
+// };
 
-    // Create HTML Elements
-    const headerDiv = document.createElement('div');
+function CreateComponent(input){
+
+    // Create HTML Elements 
+
+    const mainDiv = document.createElement('div');
     const dateSpan = document.createElement('span');
     const headerText = document.createElement('h1');
     const tempSpan = document.createElement('span');
 
-    // Append Items
-    headerDiv.append(dateSpan);
-    headerDiv.append(headerText);
-    headerDiv.append(tempSpan);
+    // Add Classes to Elements
 
+    mainDiv.classList.add('header');
+    dateSpan.classList.add('date');
+    headerText.classList.add('h1');
+    tempSpan.classList.add('temp');
 
-    // Add Class names here. Notes: No need in this instance.
+    // Add Content
 
+    dateSpan.textContent = 'MARCH 20, 2019';
+    headerText.textContent = 'Lambda Times';
+    tempSpan.textContent = '98°';
 
-    // Add Content Here
+    // Append Elements Where necessary
 
-    dateSpan.textContent = inputObject.date;
-    headerText.textContent = inputObject.heading;
-    tempSpan.textContent = inputObject.temperature;
+    mainDiv.append(dateSpan, headerText, tempSpan);
 
-    return Header;
+    // Return the main component.
+
+    return mainDiv;
 }
 
+const makeItWork = document.querySelector('.header-container');
+makeItWork.append(CreateComponent());
 
 
-const connect = document.querySelector('.header-container');
-connect.append(Header(todayInfo));
+// console.log(objectThisDay);

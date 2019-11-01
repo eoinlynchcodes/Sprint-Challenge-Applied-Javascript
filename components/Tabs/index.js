@@ -9,41 +9,33 @@
 //    <div class="tab">topic here</div>
 
 
+function TabComponent(input){
 
-function MakingTheTab(input){
-    
-    // Create Element
-    const area = document.createElement('div');
+    const mainDiv = document.createElement('div');
 
-    // Append
+    mainDiv.classList.add('tab');
 
-    // Add Classes
+    mainDiv.textContent = input;
 
-    area.classList.add('tab');
-
-
-    // Add Content
-
-    area.textContent = input.topics;
-
-    return MakingTheTab;
+    return mainDiv;
 }
-
 
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
 .then(response => {
-    console.log(response);
+    console.log(response.data.topics);
 
-    const result = document.querySelector('.topics');
-    // result.append(MakingTheTab(response));
-
-    response.forEach(item => {
-        result.append(MakingTheTab(item.input));
+    const connection = document.querySelector('.topics');
+    response.data.topics.map(topics => {
+        connection.append(TabComponent(topics));
     })
-}).catch(error => {
-    console.log(error);
 })
+.catch(error => {
+    console.log(error);
+});
+
+
+
 
 
 
