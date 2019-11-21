@@ -23,11 +23,12 @@ function TabComponent(input){
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
 .then(response => {
-    console.log(response.data.topics);
 
     const connection = document.querySelector('.topics');
-    response.data.topics.map(topics => {
-        connection.append(TabComponent(topics));
+    const topics = response.data.topics;
+    
+    topics.map(topic => {
+        connection.append(TabComponent(topic));
     })
 })
 .catch(error => {
